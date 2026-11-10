@@ -1,11 +1,11 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MenubarComponent } from './menubar.component';
+import { MainComponent } from './main.component';
 
-describe('MenubarComponent', () => {
-  let component: MenubarComponent;
-  let fixture: ComponentFixture<MenubarComponent>;
+describe('MainComponent', () => {
+  let component: MainComponent;
+  let fixture: ComponentFixture<MainComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -14,7 +14,7 @@ describe('MenubarComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MenubarComponent);
+    fixture = TestBed.createComponent(MainComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -8,11 +8,11 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-
+import { RouterOutlet, RouterLink } from '@angular/router';
 @Component({
-  selector: 'app-menubar',
-  templateUrl: './menubar.component.html',
-  styleUrl: './menubar.component.scss',
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrl: './main.component.scss',
   standalone: true,
   imports: [
     MatToolbarModule,
@@ -21,9 +21,11 @@ import { map, shareReplay } from 'rxjs/operators';
     MatListModule,
     MatIconModule,
     AsyncPipe,
-  ]
+    RouterOutlet,
+    RouterLink
+]
 })
-export class MenubarComponent {
+export class MainComponent {
   private breakpointObserver = inject(BreakpointObserver);
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
