@@ -5,6 +5,7 @@ import { MainComponent } from './shared/main/main.component';
 import { UserComponent } from './module/user/user.component';
 import { SpecialtyComponent } from './module/specialty/specialty.component';
 import { LoginComponent } from './module/login/login.component';
+import { SpecialtyViewComponent } from './module/specialty/specialty-view/specialty-view.component';
 
 export const routes: Routes = [
   {
@@ -20,11 +21,11 @@ export const routes: Routes = [
             component: SpecialtyMainComponent
           },
           {
-            path: 'tabla',
-            component: SpecialtyFormComponent
+            path: 'view/:id/operation/:operation',
+            component: SpecialtyViewComponent
           },
           {
-            path: 'form',
+            path: 'form/:id/operation/:operation',
             component: SpecialtyFormComponent
           }
         ]
