@@ -52,7 +52,7 @@ export class SpecialtyTableComponent implements OnInit, AfterViewInit {
         break;
       case OperationEnum.READ:
       case OperationEnum.DELETE:
-        this.router.navigate(['/especialidades/view', id, 'operation', OperationEnum.READ]);
+        this.router.navigate(['/especialidades/view', id, 'operation', operationEnum]);
         break;
       default: new Error('Operacion invalida');
     }

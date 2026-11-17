@@ -1,1 +1,15 @@
-<p>specialty-view works!</p>
+<div class="grid grid-cols-2 gap-4">
+  <label>
+    <strong>Identificador</strong> {{ specialty.id }}
+  </label>
+  <label>
+    <strong>Nombre</strong> {{ specialty.name }}
+  </label>
+  <label>
+    <strong>Descripcion</strong> {{ specialty.description }}
+  </label>
+  <button mat-flat-button (click)="location.back()">Volver</button>
+  @if (validOperation == operationType.DELETE ){
+  <button mat-flat-button (click)="deleteSpecialty()">Borrar</button>
+  }
+</div>

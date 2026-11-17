@@ -2,14 +2,23 @@
   <form [formGroup]="specialtyForm" class="grid grid-cols-1 gap-4 w-full max-w-md" >
     <mat-form-field >
       <mat-label>Nombre</mat-label>
-      <input matInput type="text" placeholder="Ingrese el nombre de la especialidad" formControlName="nombre">
+      <input matInput type="text" placeholder="Ingrese el nombre de la especialidad" formControlName="name">
     </mat-form-field>
 
     <mat-form-field >
       <mat-label>Descripción</mat-label>
-      <input matInput type="text" placeholder="Ingrese la descripción de la especialidad" formControlName="descripcion">
+      <input matInput type="text" placeholder="Ingrese la descripción de la especialidad" formControlName="description">
     </mat-form-field>
 
-    <button type="submit" mat-raised-button color="primary">Guardar</button>
+
+    @if (operation) {
+      <button mat-flat-button (click)="location.back()">Volver</button>
+      <button mat-flat-button (click)="updateSpecialty()">Actualizar</button>
+    }
+    @else {
+      <button mat-flat-button (click)="this.dialogRef.close(true)">Volver</button>
+      <button mat-flat-button (click)="createSpecialty()">Registrar</button>
+    }
+
   </form>
 </div>
