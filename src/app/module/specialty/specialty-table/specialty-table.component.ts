@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, effect, input, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { SpecialtyService } from '../../../core/services/specialty.service';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -20,9 +20,17 @@ export class SpecialtyTableComponent implements OnInit, AfterViewInit {
   dataSource = new MatTableDataSource<specialtyDTO>();
   operationType: typeof OperationEnum = OperationEnum;
 
-  constructor(private especialidadService: SpecialtyService, private router: Router) { }
+  createdData = input<boolean>(false)
+
+  constructor(private especialidadService: SpecialtyService, private router: Router) {
+    effect(() => {
+      if(this.createdData()){
+        this.loadSpecialties();
+      }
+    })
+   }
   ngOnInit(): void {
-    this.getSpecialties();
+    this.loadSpecialties();
   }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -32,7 +40,7 @@ export class SpecialtyTableComponent implements OnInit, AfterViewInit {
   }
 
 
-  getSpecialties() {
+  loadSpecialties() {
     this.especialidadService.getSpecialties().subscribe({
       next: (data) => {
         this.dataSource.data = data;

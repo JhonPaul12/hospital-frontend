@@ -12,12 +12,13 @@
 
 
     @if (operation) {
-      <button mat-flat-button (click)="location.back()">Volver</button>
-      <button mat-flat-button (click)="updateSpecialty()">Actualizar</button>
+
+      <button mat-flat-button color="primary" (click)="location.back()">Volver</button>
+      <button mat-flat-button color="primary" (click)="updateSpecialty()">Actualizar</button>
     }
     @else {
-      <button mat-flat-button (click)="this.dialogRef.close(true)">Volver</button>
-      <button mat-flat-button (click)="createSpecialty()">Registrar</button>
+      <button mat-flat-button color="primary"(click)="this.dialogRef.close(true)">Volver</button>
+      <button mat-flat-button color="primary" (click)="createSpecialty()">Registrar</button>
     }
 
   </form>

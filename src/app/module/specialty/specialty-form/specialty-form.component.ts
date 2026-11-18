@@ -1,4 +1,4 @@
-import { Component, Inject, inject } from '@angular/core';
+import { Component, Inject, inject, Optional } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SpecialtyService } from '../../../core/services/specialty.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,13 +8,15 @@ import { ActivatedRoute } from '@angular/router';
 import { OperationEnum } from '../../../shared/enum/operations.enum';
 import { specialtyDTO } from '../../../core/dto/specialty.dto';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 
 @Component({
   selector: 'app-specialty-form',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, CommonModule],
+  imports: [FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, CommonModule,MatButtonModule,MatDividerModule],
   templateUrl: './specialty-form.component.html',
   styleUrl: './specialty-form.component.scss'
 })
@@ -27,7 +29,7 @@ export class SpecialtyFormComponent {
   operation: String | null = null;
   operationType: typeof OperationEnum = OperationEnum;
 
-  constructor(private formBuilder: FormBuilder, protected location: Location, private activateRoute: ActivatedRoute,protected dialogRef:MatDialogRef<SpecialtyFormComponent>, @Inject (MAT_DIALOG_DATA) data:specialtyDTO ) {
+  constructor(private formBuilder: FormBuilder, protected location: Location, private activateRoute: ActivatedRoute,@Optional() protected dialogRef:MatDialogRef<SpecialtyFormComponent>, @Optional() @Inject (MAT_DIALOG_DATA) data:specialtyDTO ) {
     this.specialtyForm = this.formBuilder.group({
       id: [],
       name: ['', [Validators.required, Validators.minLength(3)]],
@@ -65,7 +67,7 @@ export class SpecialtyFormComponent {
       description: this.specialtyForm.get('description')?.value
     }
     this.specialtyService.updateSpecialty(this.specialtyId, specialty).subscribe({
-      next: (data: specialtyDTO) => this.location.back,
+      next: (data: specialtyDTO) => this.location.back(),
       error: (error) => console.error('Error fetching specialty:', error),
       complete: () => console.log('Specialty fetch complete')
     });

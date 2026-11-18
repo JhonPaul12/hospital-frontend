@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { SpecialtyComponent } from '../specialty.component';
 import { SpecialtyTableComponent } from '../specialty-table/specialty-table.component';
 import { CommonModule } from '@angular/common';
@@ -21,17 +21,18 @@ import { SpecialtyFormComponent } from '../specialty-form/specialty-form.compone
   styleUrl: './specialty-main.component.scss'
 })
 export class SpecialtyMainComponent {
+  createdData = signal<boolean>(false)
   constructor(private matDialog:MatDialog){
 
   }
 
   createSpecialty(){
     const dialogRef = this.matDialog.open(SpecialtyFormComponent,{})
-    dialogRef.afterClosed().subscribe(response =>{
+    dialogRef.afterClosed().subscribe((response:boolean) =>{
       if(response){
-
+        this.createdData.set(response)
       }else{
-        
+        this.createdData.set(false)
       }
     })
   }
